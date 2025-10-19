@@ -1,0 +1,122 @@
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area {
+    border: 3px dashed #dee2e6;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #0d6efd;
+    background: #e3f2fd;
+}
+
+.upload-area.dragover {
+    border-color: #0d6efd;
+    background: #e3f2fd;
+    transform: scale(1.02);
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.probability-bar {
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e9ecef;
+}
+
+.probability-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.quality-good {
+    background: linear-gradient(45deg, #28a745, #20c997);
+}
+
+.quality-bad {
+    background: linear-gradient(45deg, #dc3545, #fd7e14);
+}
+
+.defect-crack {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+}
+
+.defect-surface {
+    background: linear-gradient(45deg, #4834d4, #686de0);
+}
+
+.result-badge {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+.chart-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Animation for results */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}

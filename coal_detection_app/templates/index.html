@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY MOOD - Natural Coconut Coal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #121135;
+            --accent1: #FAAF43;
+            --accent2: #F69320;
+            --accent3: #F15B2A;
+            --accent4: #EB2227;
+            --neutral-light: #FFFFFF;
+            --neutral-mid: #B9B9B9;
+            --neutral-dark: #535454;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, var(--primary) 50%, #1a1a2e 100%);
+            color: var(--neutral-light);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .interface {
+            display: none;
+            min-height: 80vh;
+            padding: 30px 0;
+        }
+        
+        .interface.active {
+            display: block;
+        }
+        
+        .brand-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 100%);
+            border-bottom: 3px solid var(--accent1);
+            padding: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brand-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(250, 175, 67, 0.3);
+        }
+        
+        .brand-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--neutral-mid);
+            letter-spacing: 2px;
+        }
+        
+        .credit {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neutral-mid);
+            border-top: 1px solid rgba(250, 175, 67, 0.3);
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .main-container {
+            background: rgba(18, 17, 53, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(250, 175, 67, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin: 30px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3), var(--accent4));
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(18, 17, 53, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+            padding: 50px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(250, 175, 67, 0.2);
+        }
+        
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, var(--neutral-light), var(--neutral-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--neutral-mid);
+            margin-bottom: 30px;
+        }
+        
+        .coal-logo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3), var(--accent4));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(250, 175, 67, 0.4);
+        }
+        
+        .coal-logo-inner {
+            width: 180px;
+            height: 180px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent1), var(--accent3));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(250, 175, 67, 0.4);
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(250, 175, 67, 0.6);
+            background: linear-gradient(135deg, var(--accent2), var(--accent4));
+        }
+        
+        .btn-secondary-custom {
+            background: rgba(40, 40, 70, 0.7);
+            border: 2px solid var(--accent1);
+            color: var(--neutral-light);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary-custom:hover {
+            background: rgba(250, 175, 67, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(250, 175, 67, 0.3);
+        }
+        
+        .upload-area {
+            border: 3px dashed rgba(250, 175, 67, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: rgba(18, 17, 53, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent1);
+            background: rgba(250, 175, 67, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(250, 175, 67, 0.2);
+        }
+        
+        .upload-area.dragover {
+            border-color: var(--accent2);
+            background: rgba(246, 147, 32, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent1);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(250, 175, 67, 0.5);
+        }
+        
+        .camera-area {
+            border: 3px solid rgba(250, 175, 67, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            background: rgba(18, 17, 53, 0.6);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .camera-preview {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: #000;
+            border-radius: 10px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-mid);
+            overflow: hidden;
+        }
+        
+        .camera-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .camera-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .capture-btn {
+            background: linear-gradient(135deg, var(--accent4), var(--accent3));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(235, 34, 39, 0.4);
+            margin: 0 10px;
+        }
+        
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(235, 34, 39, 0.6);
+        }
+        
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .inspection-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .option-btn {
+            background: rgba(40, 40, 70, 0.7);
+            border: 2px solid rgba(250, 175, 67, 0.3);
+            color: var(--neutral-mid);
+            padding: 12px 30px;
+            margin: 0 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .option-btn.active {
+            background: linear-gradient(135deg, var(--accent1), var(--accent3));
+            color: white;
+            box-shadow: 0 5px 15px rgba(250, 175, 67, 0.4);
+            border-color: transparent;
+        }
+        
+        .option-btn:hover:not(.active) {
+            background: rgba(250, 175, 67, 0.1);
+            color: var(--neutral-light);
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, rgba(40, 40, 70, 0.9), rgba(26, 26, 46, 0.9));
+            border: 1px solid rgba(250, 175, 67, 0.3);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-header {
+            background: linear-gradient(135deg, var(--primary), #1a1a2e);
+            color: white;
+            padding: 20px;
+            border-bottom: 2px solid var(--accent1);
+        }
+        
+        .quality-good {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .quality-bad {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: white;
+        }
+        
+        .defect-crack {
+            background: linear-gradient(135deg, var(--accent4), var(--accent3));
+            color: white;
+        }
+        
+        .defect-surface {
+            background: linear-gradient(135deg, #4834d4, #686de0);
+            color: white;
+        }
+        
+        .confidence-badge {
+            font-size: 1.1rem;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .probability-bar {
+            height: 35px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .probability-fill {
+            height: 100%;
+            border-radius: 18px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .image-preview {
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            max-height: 350px;
+            object-fit: cover;
+            border: 2px solid rgba(250, 175, 67, 0.3);
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--accent1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(250, 175, 67, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(250, 175, 67, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(250, 175, 67, 0.4); }
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent1);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card {
+            background: rgba(40, 40, 70, 0.7);
+            border: 1px solid rgba(250, 175, 67, 0.2);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent1);
+            box-shadow: 0 10px 25px rgba(250, 175, 67, 0.2);
+        }
+        
+        .info-card {
+            background: rgba(40, 40, 70, 0.7);
+            border: 1px solid rgba(250, 175, 67, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent1);
+            box-shadow: 0 10px 25px rgba(250, 175, 67, 0.2);
+        }
+        
+        .footer {
+            background: var(--primary);
+            border-top: 1px solid rgba(250, 175, 67, 0.3);
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .text-silver {
+            color: var(--neutral-mid) !important;
+        }
+        
+        .nav-interface {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav-btn {
+            background: rgba(40, 40, 70, 0.7);
+            border: 1px solid rgba(250, 175, 67, 0.3);
+            color: var(--neutral-mid);
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--accent1), var(--accent3));
+            color: white;
+            box-shadow: 0 5px 15px rgba(250, 175, 67, 0.4);
+        }
+        
+        .nav-btn:hover:not(.active) {
+            background: rgba(250, 175, 67, 0.1);
+            color: var(--neutral-light);
+        }
+        
+        .inspection-section {
+            display: none;
+        }
+        
+        .inspection-section.active {
+            display: block;
+        }
+        
+        .analysis-details {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Brand Header -->
+    <div class="brand-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="brand-logo">MY MOOD</div>
+                    <div class="brand-tagline">NATURAL COCONUT COAL</div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="credit">Done by: Eng. Maram Al-Jarmouzi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="container">
+        <div class="nav-interface">
+            <button class="nav-btn active" data-target="interface1">Home</button>
+            <button class="nav-btn" data-target="interface2">Coal Testing</button>
+            <button class="nav-btn" data-target="interface3">Results</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-container">
+            <!-- Interface 1: Home -->
+            <div id="interface1" class="interface active">
+                <div class="hero-section">
+                    <div class="container">
+                        <div class="coal-logo">
+                            <div class="coal-logo-inner">MY MOOD</div>
+                        </div>
+                        <h1 class="hero-title">Natural Coconut Coal</h1>
+                        <p class="hero-subtitle">Premium Quality Coal Cubes by SFIC</p>
+                        
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <h3><i class="fas fa-fire me-2" style="color: var(--accent1);"></i>About Our Coal</h3>
+                                    <p class="text-silver">MY MOOD Natural Coconut Coal is a premium product manufactured by SFIC. Our coal cubes are made from 100% natural coconut shells, providing a clean, long-lasting burn with minimal ash production.</p>
+                                    <p class="text-silver">Each coal cube undergoes rigorous quality control to ensure consistent performance and superior heat output for your needs.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card">
+                                    <h3><i class="fas fa-industry me-2" style="color: var(--accent1);"></i>About SFIC</h3>
+                                    <p class="text-silver">SFIC is a leading manufacturer of premium coal products with over 20 years of experience in the industry. Our commitment to quality and innovation has made us a trusted name in coal production.</p>
+                                    <p class="text-silver">We utilize advanced manufacturing processes and strict quality standards to deliver products that exceed customer expectations.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <i class="fas fa-leaf feature-icon"></i>
+                                    <h5>100% Natural</h5>
+                                    <p class="text-silver">Made from pure coconut shells with no additives</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <i class="fas fa-wind feature-icon"></i>
+                                    <h5>Low Smoke</h5>
+                                    <p class="text-silver">Clean burning with minimal smoke production</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <i class="fas fa-clock feature-icon"></i>
+                                    <h5>Long Lasting</h5>
+                                    <p class="text-silver">Extended burn time for consistent heat</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary-custom mt-4" data-target="interface2">
+                            Test Coal Quality <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interface 2: Testing -->
+            <div id="interface2" class="interface">
+                <div class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="info-card">
+                                <h2 class="text-center mb-4">Why Test Coal Cubes?</h2>
+                                <p class="text-silver">Regular quality testing of coal cubes is essential to ensure:</p>
+                                <ul class="text-silver">
+                                    <li>Consistent burning performance</li>
+                                    <li>Optimal heat output</li>
+                                    <li>Minimal ash production</li>
+                                    <li>Identification of manufacturing defects</li>
+                                    <li>Customer satisfaction and safety</li>
+                                </ul>
+                                <p class="text-silver mt-3">Our AI-powered quality detection system analyzes coal cube images to identify potential defects and assess overall quality, helping maintain our high production standards.</p>
+                            </div>
+                            
+                            <div class="inspection-options">
+                                <div class="option-btn active" data-target="upload-section">Upload Image</div>
+                                <div class="option-btn" data-target="camera-section">Camera Inspection</div>
+                            </div>
+                            
+                            <!-- Upload Section -->
+                            <div id="upload-section" class="inspection-section active">
+                                <div id="upload-area" class="upload-area">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <h3 class="mb-3">Upload Coal Cube Image</h3>
+                                    <p class="text-silver mb-4">Drag & drop your MY MOOD coal cube image or click to browse<br>Supported formats: JPG, PNG, JPEG, GIF, BMP</p>
+                                    <button class="btn btn-primary-custom pulse-glow" onclick="document.getElementById('file-input').click()">
+                                        <i class="fas fa-search me-2"></i>Upload & Check Coal Cube
+                                    </button>
+                                    <input type="file" id="file-input" class="d-none" accept="image/*">
+                                </div>
+                                
+                                <div id="image-preview" class="text-center mb-4 d-none">
+                                    <img id="preview-img" class="image-preview img-fluid">
+                                </div>
+                            </div>
+                            
+                            <!-- Camera Section -->
+                            <div id="camera-section" class="inspection-section">
+                                <div class="camera-area">
+                                    <i class="fas fa-camera upload-icon"></i>
+                                    <h3 class="mb-3">Real-time Camera Inspection</h3>
+                                    <p class="text-silver mb-4">Point your camera at the coal cube and capture an image for instant analysis</p>
+                                    
+                                    <div class="camera-preview" id="camera-preview">
+                                        <div id="camera-placeholder">
+                                            <i class="fas fa-camera fa-3x mb-3"></i>
+                                            <p>Camera feed will appear here</p>
+                                        </div>
+                                        <video id="camera-feed" class="d-none" autoplay playsinline></video>
+                                        <canvas id="camera-canvas" class="d-none"></canvas>
+                                        <img id="captured-image" class="d-none">
+                                    </div>
+                                    
+                                    <div class="camera-controls">
+                                        <button id="start-camera" class="btn btn-primary-custom">
+                                            <i class="fas fa-play me-2"></i>Start Camera
+                                        </button>
+                                        <button id="capture-btn" class="capture-btn d-none">
+                                            <i class="fas fa-camera me-2"></i>Capture Image
+                                        </button>
+                                        <button id="retake-btn" class="btn btn-secondary-custom d-none">
+                                            <i class="fas fa-redo me-2"></i>Retake
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <button id="analyze-capture" class="btn btn-primary-custom d-none">
+                                            <i class="fas fa-search me-2"></i>Analyze Captured Image
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading Spinner -->
+                    <div id="loading-section" class="text-center d-none">
+                        <div class="loading-spinner"></div>
+                        <h4 class="mt-3">Analyzing MY MOOD Coal Cube...</h4>
+                        <p class="text-silver">Our AI is examining coal quality and detecting potential defects</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interface 3: Results -->
+            <div id="interface3" class="interface">
+                <div class="container py-5">
+                    <h2 class="text-center mb-5">Coal Cube Analysis Results</h2>
+                    
+                    <!-- Results Section -->
+                    <div id="results-section" class="fade-in">
+                        <!-- Quality Results -->
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3 class="mb-0">
+                                    <i class="fas fa-award me-2"></i>Quality Assessment Results
+                                </h3>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div id="quality-result" class="text-center">
+                                            <!-- Quality results will be inserted here -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <h5 class="text-silver">Analyzed MY MOOD Coal Cube</h5>
+                                        <div id="result-image">
+                                            <!-- Result image will be inserted here -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="analysis-details" class="analysis-details mt-4">
+                                    <!-- Analysis details will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Defect Results -->
+                        <div id="defect-results" class="result-card d-none">
+                            <div class="result-header">
+                                <h3 class="mb-0">
+                                    <i class="fas fa-search me-2"></i>Defect Classification
+                                </h3>
+                            </div>
+                            <div class="card-body p-4">
+                                <div id="defect-result">
+                                    <!-- Defect results will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Probability Charts -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="result-card">
+                                    <div class="result-header">
+                                        <h5 class="mb-0">
+                                            <i class="fas fa-chart-bar me-2"></i>Quality Probabilities
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="quality-chart">
+                                            <!-- Quality probability bars will be inserted here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="defect-chart-container" class="d-none">
+                                    <div class="result-card">
+                                        <div class="result-header">
+                                            <h5 class="mb-0">
+                                                <i class="fas fa-chart-pie me-2"></i>Defect Probabilities
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="defect-chart">
+                                                <!-- Defect probability bars will be inserted here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary-custom me-3" data-target="interface2">
+                                <i class="fas fa-redo me-2"></i>Test Another Cube
+                            </button>
+                            <button class="btn btn-primary-custom" data-target="interface1">
+                                <i class="fas fa-home me-2"></i>Return to Home
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder when no results -->
+                    <div id="no-results" class="text-center">
+                        <div class="info-card">
+                            <i class="fas fa-microscope feature-icon"></i>
+                            <h3>No Analysis Results Yet</h3>
+                            <p class="text-silver">Upload a coal cube image or use camera inspection to see analysis results here.</p>
+                            <button class="btn btn-primary-custom mt-3" data-target="interface2">
+                                <i class="fas fa-arrow-left me-2"></i>Go to Testing
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="brand-logo" style="font-size: 1.8rem;">MY MOOD</div>
+                    <p class="text-silver mt-2">Natural Coconut Coal by SFIC</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-silver">Powered by Advanced Deep Learning & AI</p>
+                    <p class="text-silver mb-0">© 2024 MY MOOD Coal Technologies</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // DOM Elements
+        const fileInput = document.getElementById('file-input');
+        const uploadArea = document.getElementById('upload-area');
+        const imagePreview = document.getElementById('image-preview');
+        const previewImg = document.getElementById('preview-img');
+        const resultsSection = document.getElementById('results-section');
+        const loadingSection = document.getElementById('loading-section');
+        const noResults = document.getElementById('no-results');
+        const interfaces = document.querySelectorAll('.interface');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const inspectionSections = document.querySelectorAll('.inspection-section');
+        const optionButtons = document.querySelectorAll('.option-btn');
+        
+        // Camera elements
+        const cameraPreview = document.getElementById('camera-preview');
+        const cameraFeed = document.getElementById('camera-feed');
+        const cameraCanvas = document.getElementById('camera-canvas');
+        const capturedImage = document.getElementById('captured-image');
+        const cameraPlaceholder = document.getElementById('camera-placeholder');
+        const startCameraBtn = document.getElementById('start-camera');
+        const captureBtn = document.getElementById('capture-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const analyzeCaptureBtn = document.getElementById('analyze-capture');
+        
+        let stream = null;
+        let capturedImageData = null;
+
+        // Initialize - show no results message
+        noResults.classList.remove('d-none');
+        resultsSection.classList.add('d-none');
+
+        // Navigation functionality
+        navButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                
+                // Update active nav button
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show target interface
+                interfaces.forEach(interface => {
+                    interface.classList.remove('active');
+                });
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Inspection option buttons
+        optionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                
+                // Update active option button
+                optionButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show target inspection section
+                inspectionSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Navigation buttons inside content
+        document.querySelectorAll('[data-target]').forEach(button => {
+            if (!button.classList.contains('nav-btn') && !button.classList.contains('option-btn')) {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // Update active nav button
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-target') === targetId) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Show target interface
+                    interfaces.forEach(interface => {
+                        interface.classList.remove('active');
+                    });
+                    document.getElementById(targetId).classList.add('active');
+                });
+            }
+        });
+
+        // Event Listeners for file upload
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        // Drag and drop events
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+
+        // Camera event listeners
+        startCameraBtn.addEventListener('click', startCamera);
+        captureBtn.addEventListener('click', captureImage);
+        retakeBtn.addEventListener('click', retakeImage);
+        analyzeCaptureBtn.addEventListener('click', analyzeCapturedImage);
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && validateFile(file)) {
+                displayImagePreview(file);
+                analyzeImage(file);
+            }
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadArea.classList.add('dragover');
+        }
+
+        function handleDragLeave(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadArea.classList.remove('dragover');
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            uploadArea.classList.remove('dragover');
+            
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (validateFile(file)) {
+                    displayImagePreview(file);
+                    analyzeImage(file);
+                }
+            }
+        }
+
+        function validateFile(file) {
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+            const maxSize = 16 * 1024 * 1024; // 16MB
+            
+            if (!allowedTypes.includes(file.type)) {
+                alert('Please upload a valid image file (JPG, PNG, GIF, BMP)');
+                return false;
+            }
+            
+            if (file.size > maxSize) {
+                alert('File size must be less than 16MB');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                imagePreview.classList.remove('d-none');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // Camera functions
+        function startCamera() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                    .then(function(mediaStream) {
+                        stream = mediaStream;
+                        cameraFeed.srcObject = stream;
+                        cameraFeed.classList.remove('d-none');
+                        cameraPlaceholder.classList.add('d-none');
+                        startCameraBtn.classList.add('d-none');
+                        captureBtn.classList.remove('d-none');
+                    })
+                    .catch(function(error) {
+                        console.error('Error accessing camera:', error);
+                        alert('Unable to access camera. Please check permissions and try again.');
+                    });
+            } else {
+                alert('Your browser does not support camera access.');
+            }
+        }
+
+        function captureImage() {
+            const context = cameraCanvas.getContext('2d');
+            cameraCanvas.width = cameraFeed.videoWidth;
+            cameraCanvas.height = cameraFeed.videoHeight;
+            context.drawImage(cameraFeed, 0, 0, cameraCanvas.width, cameraCanvas.height);
+            
+            // Convert to data URL
+            capturedImageData = cameraCanvas.toDataURL('image/jpeg');
+            capturedImage.src = capturedImageData;
+            capturedImage.classList.remove('d-none');
+            cameraFeed.classList.add('d-none');
+            
+            // Show controls for captured image
+            captureBtn.classList.add('d-none');
+            retakeBtn.classList.remove('d-none');
+            analyzeCaptureBtn.classList.remove('d-none');
+            
+            // Stop camera stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        function retakeImage() {
+            capturedImage.classList.add('d-none');
+            cameraFeed.classList.remove('d-none');
+            captureBtn.classList.remove('d-none');
+            retakeBtn.classList.add('d-none');
+            analyzeCaptureBtn.classList.add('d-none');
+            
+            // Restart camera
+            startCamera();
+        }
+
+        function analyzeCapturedImage() {
+            if (capturedImageData) {
+                // Convert data URL to blob
+                fetch(capturedImageData)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        analyzeImage(blob);
+                    });
+            }
+        }
+
+        function analyzeImage(file) {
+            showLoading();
+            hideResults();
+            
+            // Create an image element to analyze
+            const img = new Image();
+            const objectUrl = file instanceof Blob ? URL.createObjectURL(file) : file;
+            
+            img.onload = function() {
+                // Analyze the image for coal quality
+                const analysisResult = analyzeCoalImage(img);
+                
+                // Simulate API processing time
+                setTimeout(() => {
+                    hideLoading();
+                    displayResults(analysisResult, objectUrl);
+                    
+                    // Navigate to results interface
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-target') === 'interface3') {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    interfaces.forEach(interface => {
+                        interface.classList.remove('active');
+                    });
+                    document.getElementById('interface3').classList.add('active');
+                }, 1500);
+            };
+            
+            img.src = objectUrl;
+        }
+
+        // Improved image analysis function
+        function analyzeCoalImage(img) {
+            // Create a canvas to analyze the image
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // Analyze image characteristics
+            let totalPixels = img.width * img.height;
+            let darkPixels = 0;
+            let mediumPixels = 0;
+            let lightPixels = 0;
+            let redPixels = 0;
+            let crackScore = 0;
+            let surfaceScore = 0;
+            
+            // Sample pixels for analysis (every 10th pixel for performance)
+            for (let i = 0; i < data.length; i += 40) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                
+                // Calculate brightness
+                const brightness = (r + g + b) / 3;
+                
+                // Categorize pixels by brightness
+                if (brightness < 85) {
+                    darkPixels++;
+                } else if (brightness < 170) {
+                    mediumPixels++;
+                } else {
+                    lightPixels++;
+                }
+                
+                // Check for reddish tones (potential surface issues)
+                if (r > g * 1.2 && r > b * 1.2) {
+                    redPixels++;
+                }
+                
+                // Simple edge detection for cracks (checking for sharp brightness changes)
+                if (i > 4 && i < data.length - 4) {
+                    const prevBrightness = (data[i-4] + data[i-3] + data[i-2]) / 3;
+                    const nextBrightness = (data[i+4] + data[i+5] + data[i+6]) / 3;
+                    const brightnessDiff = Math.abs(prevBrightness - nextBrightness);
+                    
+                    if (brightnessDiff > 50) {
+                        crackScore += brightnessDiff / 50;
+                    }
+                }
+            }
+            
+            // Calculate percentages
+            const darkPercent = darkPixels / (totalPixels / 10);
+            const mediumPercent = mediumPixels / (totalPixels / 10);
+            const lightPercent = lightPixels / (totalPixels / 10);
+            const redPercent = redPixels / (totalPixels / 10);
+            
+            // Determine quality based on analysis
+            let qualityClass = 'Good_quality_coal';
+            let qualityConfidence = 0.85;
+            let defectClass = 'Cracks_and_fractures';
+            let defectConfidence = 0.75;
+            
+            // Quality assessment logic
+            if (darkPercent > 0.7) {
+                // Very dark coal - likely high quality
+                qualityClass = 'Good_quality_coal';
+                qualityConfidence = 0.9;
+            } else if (darkPercent > 0.5) {
+                // Moderately dark - medium quality
+                qualityClass = 'Good_quality_coal';
+                qualityConfidence = 0.75;
+            } else if (lightPercent > 0.4) {
+                // Too light - likely poor quality
+                qualityClass = 'Defect_coal';
+                qualityConfidence = 0.8;
+            } else if (redPercent > 0.2) {
+                // High red content - surface defects
+                qualityClass = 'Defect_coal';
+                qualityConfidence = 0.85;
+                defectClass = 'Surface_defects';
+                defectConfidence = 0.8;
+            } else if (crackScore / (totalPixels / 10) > 2) {
+                // High crack score
+                qualityClass = 'Defect_coal';
+                qualityConfidence = 0.8;
+                defectClass = 'Cracks_and_fractures';
+                defectConfidence = 0.85;
+            }
+            
+            // Generate probabilities
+            const goodProb = qualityClass === 'Good_quality_coal' ? qualityConfidence : 1 - qualityConfidence;
+            const defectProb = qualityClass === 'Defect_coal' ? qualityConfidence : 1 - qualityConfidence;
+            
+            const crackProb = defectClass === 'Cracks_and_fractures' ? defectConfidence : 1 - defectConfidence;
+            const surfaceProb = defectClass === 'Surface_defects' ? defectConfidence : 1 - defectConfidence;
+            
+            // Create analysis details
+            const analysisDetails = `
+                <h6>Image Analysis Details:</h6>
+                <div class="detail-item">
+                    <span>Dark Pixels:</span>
+                    <span>${(darkPercent * 100).toFixed(1)}%</span>
+                </div>
+                <div class="detail-item">
+                    <span>Medium Pixels:</span>
+                    <span>${(mediumPercent * 100).toFixed(1)}%</span>
+                </div>
+                <div class="detail-item">
+                    <span>Light Pixels:</span>
+                    <span>${(lightPercent * 100).toFixed(1)}%</span>
+                </div>
+                <div class="detail-item">
+                    <span>Reddish Tones:</span>
+                    <span>${(redPercent * 100).toFixed(1)}%</span>
+                </div>
+                <div class="detail-item">
+                    <span>Crack Detection Score:</span>
+                    <span>${(crackScore / (totalPixels / 10)).toFixed(2)}</span>
+                </div>
+            `;
+            
+            return {
+                image: img.src,
+                quality_prediction: {
+                    class: qualityClass,
+                    confidence: qualityConfidence,
+                    probabilities: {
+                        'Good_quality_coal': goodProb,
+                        'Defect_coal': defectProb
+                    }
+                },
+                defect_prediction: qualityClass === 'Defect_coal' ? {
+                    class: defectClass,
+                    confidence: defectConfidence,
+                    probabilities: {
+                        'Cracks_and_fractures': crackProb,
+                        'Surface_defects': surfaceProb
+                    }
+                } : null,
+                analysis_details: analysisDetails
+            };
+        }
+
+        function displayResults(data, imageUrl) {
+            // Hide no results message
+            noResults.classList.add('d-none');
+            resultsSection.classList.remove('d-none');
+            
+            // Display uploaded image
+            document.getElementById('result-image').innerHTML = `
+                <img src="${imageUrl}" class="image-preview img-fluid" style="max-height: 250px;">
+                <p class="text-silver mt-2">MY MOOD Coal Cube Analysis</p>
+            `;
+            
+            // Display quality results
+            const quality = data.quality_prediction;
+            const qualityElement = document.getElementById('quality-result');
+            
+            const qualityBadgeClass = quality.class === 'Good_quality_coal' ? 
+                'quality-good confidence-badge' : 'quality-bad confidence-badge';
+            
+            const qualityIcon = quality.class === 'Good_quality_coal' ? 
+                'fa-check-circle' : 'fa-exclamation-triangle';
+            
+            qualityElement.innerHTML = `
+                <div class="mb-4">
+                    <span class="${qualityBadgeClass}">
+                        <i class="fas ${qualityIcon} me-2"></i>
+                        ${formatClassName(quality.class)}
+                    </span>
+                </div>
+                <h4 class="mb-3">Confidence: ${(quality.confidence * 100).toFixed(1)}%</h4>
+            `;
+            
+            // Display analysis details
+            document.getElementById('analysis-details').innerHTML = data.analysis_details;
+            
+            // Display quality probabilities
+            const qualityChart = document.getElementById('quality-chart');
+            qualityChart.innerHTML = Object.entries(quality.probabilities).map(([className, prob]) => `
+                <div class="probability-item mb-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="fw-bold">${formatClassName(className)}</span>
+                        <span class="fw-bold text-silver">${(prob * 100).toFixed(1)}%</span>
+                    </div>
+                    <div class="probability-bar">
+                        <div class="probability-fill ${className === 'Good_quality_coal' ? 'quality-good' : 'quality-bad'}" 
+                             style="width: ${prob * 100}%">
+                            ${(prob * 100).toFixed(1)}%
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Display defect results if coal is defective
+            const defectResults = document.getElementById('defect-results');
+            const defectChartContainer = document.getElementById('defect-chart-container');
+            
+            if (quality.class === 'Defect_coal' && data.defect_prediction) {
+                const defect = data.defect_prediction;
+                const defectElement = document.getElementById('defect-result');
+                
+                const defectBadgeClass = defect.class === 'Cracks_and_fractures' ? 
+                    'defect-crack confidence-badge' : 'defect-surface confidence-badge';
+                
+                const defectIcon = defect.class === 'Cracks_and_fractures' ? 
+                    'fa-bolt' : 'fa-mountain';
+                
+                defectElement.innerHTML = `
+                    <div class="text-center mb-4">
+                        <span class="${defectBadgeClass}">
+                            <i class="fas ${defectIcon} me-2"></i>
+                            ${formatClassName(defect.class)}
+                        </span>
+                    </div>
+                    <h4 class="text-center mb-4">Confidence: ${(defect.confidence * 100).toFixed(1)}%</h4>
+                `;
+                
+                // Display defect probabilities
+                const defectChart = document.getElementById('defect-chart');
+                defectChart.innerHTML = Object.entries(defect.probabilities).map(([className, prob]) => `
+                    <div class="probability-item mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold">${formatClassName(className)}</span>
+                            <span class="fw-bold text-silver">${(prob * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill ${className === 'Cracks_and_fractures' ? 'defect-crack' : 'defect-surface'}" 
+                                 style="width: ${prob * 100}%">
+                                ${(prob * 100).toFixed(1)}%
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                defectResults.classList.remove('d-none');
+                defectChartContainer.classList.remove('d-none');
+            } else {
+                defectResults.classList.add('d-none');
+                defectChartContainer.classList.add('d-none');
+            }
+            
+            // Show results with animation
+            resultsSection.classList.remove('d-none');
+            setTimeout(() => {
+                resultsSection.classList.add('fade-in');
+            }, 100);
+        }
+
+        function formatClassName(className) {
+            return className.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        function showLoading() {
+            loadingSection.classList.remove('d-none');
+            uploadArea.style.opacity = '0.5';
+        }
+
+        function hideLoading() {
+            loadingSection.classList.add('d-none');
+            uploadArea.style.opacity = '1';
+        }
+
+        function hideResults() {
+            resultsSection.classList.add('d-none');
+            resultsSection.classList.remove('fade-in');
+        }
+    </script>
+</body>
+</html>
